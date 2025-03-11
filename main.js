@@ -55,7 +55,8 @@ function drawFinalImage(img, crop, id) {
   const width = parseInt(document.getElementById(`customWidth${id}`).value) || 320;
   const height = parseInt(document.getElementById(`customHeight${id}`).value) || 320;
   const padding = id === 2 ? parseInt(document.getElementById(`padding${id}`).value) || 0 : 0;
-  
+  const addBorder = id === 2 ? document.getElementById("border2").checked : false;
+
 
   // Resize wrapper to match canvas
   const wrapper = document.getElementById(`previewWrapper${id}`);
@@ -67,6 +68,28 @@ function drawFinalImage(img, crop, id) {
   exportCanvas.width = width;
   exportCanvas.height = height;
   ectx.clearRect(0, 0, width, height);
+
+  // Optional border background
+  if (addBorder) {
+    const borderRadius = 36;
+    const borderWidth = 10;
+    const borderColor = "#DADCE0";
+  
+    ectx.strokeStyle = borderColor;
+    ectx.lineWidth = borderWidth;
+    ectx.lineJoin = "round";
+  
+    roundRect(
+      ectx,
+      borderWidth / 2,
+      borderWidth / 2,
+      width - borderWidth,
+      height - borderWidth,
+      borderRadius
+    );
+    ectx.stroke();
+  }
+
   ectx.imageSmoothingEnabled = true;
   ectx.imageSmoothingQuality = "high";
 
@@ -104,4 +127,18 @@ function downloadImage(id) {
   link.download = `logo_${id}.png`;
   link.href = exportCanvas.toDataURL("image/png");
   link.click();
+}
+
+function roundRect(ctx, x, y, width, height, radius) {
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.lineTo(x + width - radius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+  ctx.lineTo(x + width, y + height - radius);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+  ctx.lineTo(x + radius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+  ctx.lineTo(x, y + radius);
+  ctx.quadraticCurveTo(x, y, x + radius, y);
+  ctx.closePath();
 }

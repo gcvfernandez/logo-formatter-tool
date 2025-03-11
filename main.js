@@ -55,8 +55,22 @@ function drawFinalImage(img, crop, id) {
   const width = parseInt(document.getElementById(`customWidth${id}`).value) || 320;
   const height = parseInt(document.getElementById(`customHeight${id}`).value) || 320;
   const padding = id === 2 ? parseInt(document.getElementById(`padding${id}`).value) || 0 : 0;
-  const addBorder = id === 2 ? document.getElementById("border2").checked : false;
+  // const addBorder = id === 2 ? document.getElementById("border2").checked : false;
+  // const borderSize = id === 2 ? parseInt(document.getElementById("borderSize2").value) || 0 : 0;
+  // const borderRadius = id === 2 ? parseInt(document.getElementById("borderRadius2").value) || 0 : 0;
+  // const borderColor = id === 2 ? document.getElementById("borderColor2").value : "#000000";
 
+  let addBorder = false;
+  let borderSize = 0;
+  let borderRadius = 0;
+  let borderColor = "#000000";
+
+  if (id === 2) {
+    addBorder = document.getElementById("borderToggle2")?.checked || false;
+    borderSize = parseInt(document.getElementById("borderSize2")?.value) || 0;
+    borderRadius = parseInt(document.getElementById("borderRadius2")?.value) || 0;
+    borderColor = document.getElementById("borderColor2")?.value || "#000000";
+  }
 
   // Resize wrapper to match canvas
   const wrapper = document.getElementById(`previewWrapper${id}`);
@@ -70,21 +84,17 @@ function drawFinalImage(img, crop, id) {
   ectx.clearRect(0, 0, width, height);
 
   // Optional border background
-  if (addBorder) {
-    const borderRadius = 36;
-    const borderWidth = 10;
-    const borderColor = "#DADCE0";
-  
+  if (addBorder && borderSize > 0) {
     ectx.strokeStyle = borderColor;
-    ectx.lineWidth = borderWidth;
+    ectx.lineWidth = borderSize;
     ectx.lineJoin = "round";
   
     roundRect(
       ectx,
-      borderWidth / 2,
-      borderWidth / 2,
-      width - borderWidth,
-      height - borderWidth,
+      borderSize / 2,
+      borderSize / 2,
+      width - borderSize,
+      height - borderSize,
       borderRadius
     );
     ectx.stroke();
@@ -95,7 +105,6 @@ function drawFinalImage(img, crop, id) {
 
   const cropWidth = crop.xMax - crop.xMin;
   const cropHeight = crop.yMax - crop.yMin;
-
   const targetW = width - padding * 2;
   const targetH = height - padding * 2;
   const scale = Math.min(targetW / cropWidth, targetH / cropHeight);

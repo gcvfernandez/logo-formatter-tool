@@ -17,9 +17,11 @@ body {
     margin-bottom: 10px;
   }
   .preview-wrapper canvas {
-    position: absolute;
+    position: absolute; 
+    /* position: relative;  */
     top: 0;
-    left: 0;
+    /* left: 0; */
+    right: 0;
   }
   .resizer-block {
     margin-bottom: 50px;

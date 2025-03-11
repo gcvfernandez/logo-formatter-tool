@@ -24,8 +24,21 @@
         Height:
         <input type="number" id="customHeight1" value="320" style="width: 80px;" />
       </label>
+      <label style="margin-left: 10px;">
+        Padding: <input type="number" id="padding1" value="0" style="width: 60px;">
+      </label>
     </div>
-
+    <div style="margin-top: 10px;">
+      <label>
+        <input type="checkbox" id="borderToggle1" onchange="toggleBorderOptions(1)" />
+        Add Border
+      </label>
+      <div id="borderOptions1" style="margin-left: 10px; margin-top: 5px; display: none;">
+        <label>Border Size: <input type="number" id="borderSize1" value="10" style="width: 60px;"></label>
+        <label style="margin-left: 10px;">Radius: <input type="number" id="borderRadius1" value="36" style="width: 60px;"></label>
+        <label style="margin-left: 10px;">Color: <input type="color" id="borderColor1" value="#DADCE0"></label>
+      </div>
+    </div>     
     <div>
       <p><strong>🔍 Live Preview:</strong></p>
       <div class="preview-wrapper" id="previewWrapper1">
@@ -55,15 +68,15 @@
       </label>
       <div style="margin-top: 10px;">
         <label>
-          <input type="checkbox" id="borderToggle2" checked />
+          <input type="checkbox" id="borderToggle2" onchange="toggleBorderOptions(2)" checked />
           Add Border
         </label>
-        <div style="margin-left: 10px; margin-top: 5px;">
+        <div id="borderOptions2" style="margin-left: 10px; margin-top: 5px;">
           <label>Border Size: <input type="number" id="borderSize2" value="10" style="width: 60px;"></label>
           <label style="margin-left: 10px;">Radius: <input type="number" id="borderRadius2" value="36" style="width: 60px;"></label>
           <label style="margin-left: 10px;">Color: <input type="color" id="borderColor2" value="#DADCE0"></label>
         </div>
-      </div>
+      </div>      
       
       
     </div>    

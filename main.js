@@ -54,23 +54,19 @@ function getBoundingBox(imageData) {
 function drawFinalImage(img, crop, id) {
   const width = parseInt(document.getElementById(`customWidth${id}`).value) || 320;
   const height = parseInt(document.getElementById(`customHeight${id}`).value) || 320;
-  const padding = id === 2 ? parseInt(document.getElementById(`padding${id}`).value) || 0 : 0;
-  // const addBorder = id === 2 ? document.getElementById("border2").checked : false;
-  // const borderSize = id === 2 ? parseInt(document.getElementById("borderSize2").value) || 0 : 0;
-  // const borderRadius = id === 2 ? parseInt(document.getElementById("borderRadius2").value) || 0 : 0;
-  // const borderColor = id === 2 ? document.getElementById("borderColor2").value : "#000000";
-
+  const padding = parseInt(document.getElementById(`padding${id}`)?.value) || 0;
+  
   let addBorder = false;
   let borderSize = 0;
   let borderRadius = 0;
   let borderColor = "#000000";
-
-  if (id === 2) {
-    addBorder = document.getElementById("borderToggle2")?.checked || false;
-    borderSize = parseInt(document.getElementById("borderSize2")?.value) || 0;
-    borderRadius = parseInt(document.getElementById("borderRadius2")?.value) || 0;
-    borderColor = document.getElementById("borderColor2")?.value || "#000000";
-  }
+  
+  if (document.getElementById(`borderToggle${id}`)) {
+    addBorder = document.getElementById(`borderToggle${id}`).checked;
+    borderSize = parseInt(document.getElementById(`borderSize${id}`)?.value) || 0;
+    borderRadius = parseInt(document.getElementById(`borderRadius${id}`)?.value) || 0;
+    borderColor = document.getElementById(`borderColor${id}`)?.value || "#000000";
+  }  
 
   // Resize wrapper to match canvas
   const wrapper = document.getElementById(`previewWrapper${id}`);
@@ -150,4 +146,10 @@ function roundRect(ctx, x, y, width, height, radius) {
   ctx.lineTo(x, y + radius);
   ctx.quadraticCurveTo(x, y, x + radius, y);
   ctx.closePath();
+}
+
+function toggleBorderOptions(id) {
+  const toggle = document.getElementById(`borderToggle${id}`);
+  const options = document.getElementById(`borderOptions${id}`);
+  options.style.display = toggle.checked ? "block" : "none";
 }

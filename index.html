@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logo Auto Crop & Export @4x</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h2>🎨 Logo Auto Crop & Export Tool</h2>
+  <input type="file" accept="image/*" id="upload" />
+  <button onclick="downloadImage()">⬇️ Download PNG</button>
+
+  <div style="margin-top: 10px;">
+    <label>
+      Width:
+      <input type="number" id="customWidth" value="320" style="width: 80px;" />
+    </label>
+    <label style="margin-left: 10px;">
+      Height:
+      <input type="number" id="customHeight" value="320" style="width: 80px;" />
+    </label>
+  </div>
+
+  <div style="display: flex; gap: 20px; margin-top: 20px;">
+    <div>
+      <p><strong>🔍 Live Preview:</strong></p>
+      <div class="preview-wrapper" id="previewWrapper">
+        <canvas id="preview" width="320" height="320"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="exportCanvas" style="display: none;"></canvas>
+  <canvas id="tempCanvas" style="display: none;"></canvas>
+
+  <script src="main.js"></script>
+</body>
+</html>

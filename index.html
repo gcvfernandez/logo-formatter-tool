@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Logo Auto Crop & Export @4x</title>
+  <title>FigNot!</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,6 +14,7 @@
     <h3>🔹 1:1 Resizer (Default 320x320)</h3>
     <input type="file" accept="image/*" id="upload1" />
     <button onclick="downloadImage(1)">⬇️ Download PNG</button>
+    <button onclick="refreshPreview(1)">🔄 Refresh</button>
 
     <div style="margin-top: 10px;">
       <label>
@@ -52,7 +53,8 @@
     <h3>🔹 8:5 Resizer (Default 1170x730)</h3>
     <input type="file" accept="image/*" id="upload2" />
     <button onclick="downloadImage(2)">⬇️ Download PNG</button>
-
+    <button onclick="refreshPreview(2)">🔄 Refresh</button>
+    
     <div style="margin-top: 10px;">
       <label>
         Width:

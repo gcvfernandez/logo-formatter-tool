@@ -2,6 +2,8 @@ document.getElementById("upload1").addEventListener("change", (e) => handleUploa
 document.getElementById("upload2").addEventListener("change", (e) => handleUpload(e, 2));
 
 const currentImgs = { 1: null, 2: null };
+let currentImg1 = null;
+let currentImg2 = null;
 
 function handleUpload(e, id) {
   const file = e.target.files[0];
@@ -9,10 +11,27 @@ function handleUpload(e, id) {
 
   const img = new Image();
   img.onload = () => {
-    currentImgs[id] = img;
+    if (id === 1) currentImg1 = img;
+    if (id === 2) currentImg2 = img;
     processImage(img, id);
   };
   img.src = URL.createObjectURL(file);
+}
+
+function refreshPreview(id) {
+  if (id === 1 && currentImg1) {
+    processImage(currentImg1, 1);
+  } else if (id === 2 && currentImg2) {
+    processImage(currentImg2, 2);
+  } else {
+    alert("Ooof upload an image first.");
+  }
+}
+
+function toggleBorderOptions(id) {
+  const toggle = document.getElementById(`borderToggle${id}`);
+  const options = document.getElementById(`borderOptions${id}`);
+  options.style.display = toggle.checked ? "block" : "none";
 }
 
 function processImage(img, id) {
@@ -148,8 +167,3 @@ function roundRect(ctx, x, y, width, height, radius) {
   ctx.closePath();
 }
 
-function toggleBorderOptions(id) {
-  const toggle = document.getElementById(`borderToggle${id}`);
-  const options = document.getElementById(`borderOptions${id}`);
-  options.style.display = toggle.checked ? "block" : "none";
-}

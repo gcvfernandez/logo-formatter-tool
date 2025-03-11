@@ -1,20 +1,21 @@
-const upload = document.getElementById("upload");
-upload.addEventListener("change", handleUpload);
+document.getElementById("upload1").addEventListener("change", (e) => handleUpload(e, 1));
+document.getElementById("upload2").addEventListener("change", (e) => handleUpload(e, 2));
 
-let currentImg = null;
+const currentImgs = { 1: null, 2: null };
 
-function handleUpload(e) {
+function handleUpload(e, id) {
   const file = e.target.files[0];
   if (!file) return;
+
   const img = new Image();
   img.onload = () => {
-    currentImg = img;
-    processImage(img);
+    currentImgs[id] = img;
+    processImage(img, id);
   };
   img.src = URL.createObjectURL(file);
 }
 
-function processImage(img) {
+function processImage(img, id) {
   const tempCanvas = document.getElementById("tempCanvas");
   const tctx = tempCanvas.getContext("2d");
   tempCanvas.width = img.width;
@@ -24,7 +25,7 @@ function processImage(img) {
 
   const imageData = tctx.getImageData(0, 0, img.width, img.height);
   const crop = getBoundingBox(imageData);
-  drawFinalImage(img, crop);
+  drawFinalImage(img, crop, id);
 }
 
 function getBoundingBox(imageData) {
@@ -50,35 +51,27 @@ function getBoundingBox(imageData) {
   return { xMin, xMax, yMin, yMax };
 }
 
-function drawFinalImage(img, crop) {
-  const exportCanvas = document.getElementById("exportCanvas");
-  const ectx = exportCanvas.getContext("2d");
-  const previewCanvas = document.getElementById("preview");
-  const pctx = previewCanvas.getContext("2d");
+function drawFinalImage(img, crop, id) {
+  const width = parseInt(document.getElementById(`customWidth${id}`).value) || 320;
+  const height = parseInt(document.getElementById(`customHeight${id}`).value) || 320;
 
-  const width = parseInt(document.getElementById("customWidth").value) || 320;
-  const height = parseInt(document.getElementById("customHeight").value) || 320;
-  const padding = 0;
-
-  // Dynamically update wrapper size to match canvas
-  const wrapper = document.getElementById("previewWrapper");
+  // Resize wrapper to match canvas
+  const wrapper = document.getElementById(`previewWrapper${id}`);
   wrapper.style.width = width + "px";
   wrapper.style.height = height + "px";
 
+  const exportCanvas = document.getElementById(`exportCanvas${id}`);
+  const ectx = exportCanvas.getContext("2d");
   exportCanvas.width = width;
   exportCanvas.height = height;
   ectx.clearRect(0, 0, width, height);
-
-  // High-quality smoothing
   ectx.imageSmoothingEnabled = true;
   ectx.imageSmoothingQuality = "high";
 
   const cropWidth = crop.xMax - crop.xMin;
   const cropHeight = crop.yMax - crop.yMin;
 
-  const targetW = width - padding * 2;
-  const targetH = height - padding * 2;
-  const scale = Math.min(targetW / cropWidth, targetH / cropHeight);
+  const scale = Math.min(width / cropWidth, height / cropHeight);
   const drawW = cropWidth * scale;
   const drawH = cropHeight * scale;
   const offsetX = (width - drawW) / 2;
@@ -90,7 +83,9 @@ function drawFinalImage(img, crop) {
     offsetX, offsetY, drawW, drawH
   );
 
-  // Preview update
+  // Draw preview
+  const previewCanvas = document.getElementById(`preview${id}`);
+  const pctx = previewCanvas.getContext("2d");
   previewCanvas.width = width;
   previewCanvas.height = height;
   pctx.clearRect(0, 0, width, height);
@@ -99,10 +94,10 @@ function drawFinalImage(img, crop) {
   pctx.drawImage(exportCanvas, 0, 0, width, height);
 }
 
-function downloadImage() {
-  const exportCanvas = document.getElementById("exportCanvas");
+function downloadImage(id) {
+  const exportCanvas = document.getElementById(`exportCanvas${id}`);
   const link = document.createElement("a");
-  link.download = "logo.png";
+  link.download = `logo_${id}.png`;
   link.href = exportCanvas.toDataURL("image/png");
   link.click();
 }

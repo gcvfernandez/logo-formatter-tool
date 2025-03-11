@@ -8,31 +8,61 @@
 </head>
 <body>
   <h2>🎨 Logo Auto Crop & Export Tool</h2>
-  <input type="file" accept="image/*" id="upload" />
-  <button onclick="downloadImage()">⬇️ Download PNG</button>
 
-  <div style="margin-top: 10px;">
-    <label>
-      Width:
-      <input type="number" id="customWidth" value="320" style="width: 80px;" />
-    </label>
-    <label style="margin-left: 10px;">
-      Height:
-      <input type="number" id="customHeight" value="320" style="width: 80px;" />
-    </label>
-  </div>
+  <!-- Resizer 1 -->
+  <div class="resizer-block">
+    <h3>🔹 1:1 Resizer (Default 320x320)</h3>
+    <input type="file" accept="image/*" id="upload1" />
+    <button onclick="downloadImage(1)">⬇️ Download PNG</button>
 
-  <div style="display: flex; gap: 20px; margin-top: 20px;">
+    <div style="margin-top: 10px;">
+      <label>
+        Width:
+        <input type="number" id="customWidth1" value="320" style="width: 80px;" />
+      </label>
+      <label style="margin-left: 10px;">
+        Height:
+        <input type="number" id="customHeight1" value="320" style="width: 80px;" />
+      </label>
+    </div>
+
     <div>
       <p><strong>🔍 Live Preview:</strong></p>
-      <div class="preview-wrapper" id="previewWrapper">
-        <canvas id="preview" width="320" height="320"></canvas>
+      <div class="preview-wrapper" id="previewWrapper1">
+        <canvas id="preview1" width="320" height="320"></canvas>
       </div>
     </div>
   </div>
 
-  <canvas id="exportCanvas" style="display: none;"></canvas>
+  <!-- Resizer 2 -->
+  <div class="resizer-block">
+    <h3>🔹 8:5 Resizer (Default 1170x730)</h3>
+    <input type="file" accept="image/*" id="upload2" />
+    <button onclick="downloadImage(2)">⬇️ Download PNG</button>
+
+    <div style="margin-top: 10px;">
+      <label>
+        Width:
+        <input type="number" id="customWidth2" value="1170" style="width: 80px;" />
+      </label>
+      <label style="margin-left: 10px;">
+        Height:
+        <input type="number" id="customHeight2" value="730" style="width: 80px;" />
+      </label>
+    </div>
+
+    <div>
+      <p><strong>🔍 Live Preview:</strong></p>
+      <div class="preview-wrapper" id="previewWrapper2">
+        <canvas id="preview2" width="1170" height="730"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared canvases (off-screen) -->
   <canvas id="tempCanvas" style="display: none;"></canvas>
+  <canvas id="exportCanvas1" style="display: none;"></canvas>
+  <canvas id="exportCanvas2" style="display: none;"></canvas>
 
   <script src="main.js"></script>
 </body>

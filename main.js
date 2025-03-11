@@ -54,6 +54,8 @@ function getBoundingBox(imageData) {
 function drawFinalImage(img, crop, id) {
   const width = parseInt(document.getElementById(`customWidth${id}`).value) || 320;
   const height = parseInt(document.getElementById(`customHeight${id}`).value) || 320;
+  const padding = id === 2 ? parseInt(document.getElementById(`padding${id}`).value) || 0 : 0;
+  
 
   // Resize wrapper to match canvas
   const wrapper = document.getElementById(`previewWrapper${id}`);
@@ -71,12 +73,14 @@ function drawFinalImage(img, crop, id) {
   const cropWidth = crop.xMax - crop.xMin;
   const cropHeight = crop.yMax - crop.yMin;
 
-  const scale = Math.min(width / cropWidth, height / cropHeight);
+  const targetW = width - padding * 2;
+  const targetH = height - padding * 2;
+  const scale = Math.min(targetW / cropWidth, targetH / cropHeight);
   const drawW = cropWidth * scale;
   const drawH = cropHeight * scale;
   const offsetX = (width - drawW) / 2;
   const offsetY = (height - drawH) / 2;
-
+  
   ectx.drawImage(
     img,
     crop.xMin, crop.yMin, cropWidth, cropHeight,

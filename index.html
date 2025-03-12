@@ -4,17 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🥵FigNot!</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Symbols:opsz,wght,FILL,GRAD,ROND@24,400,0,0,50&icon_names=file_png" />
 </head>
 <body>
-  <h2>🥵 Payments: Logos Resizer Tool</h2>
+
+  <div class="navbar">
+    <h2><span class="google-symbols">file_png</span> Payments Logo Resizer Tool</h2>
+
+  </div>
 
   <!-- Resizer 1 -->
+  <div class="container">
   <div class="resizer-block">
-    <h3>🔹 1:1 Resizer (Default 320x320)</h3>
+    <h3>Square (Default: 320x320)</h3>
     <input type="file" accept="image/*" id="upload1" />
-    <button onclick="downloadImage(1)">⬇️ Download PNG</button>
-    <button onclick="refreshPreview(1)">🔄 Refresh</button>
+    <button onclick="downloadImage(1)">Download PNG</button>
+    <button onclick="refreshPreview(1)">Refresh</button>
 
     <div style="margin-top: 10px;">
       <label>
@@ -50,10 +56,10 @@
 
   <!-- Resizer 2 -->
   <div class="resizer-block">
-    <h3>🔹 8:5 Resizer (Default 1170x730)</h3>
+    <h3>Rectangle (Default: 1170x730)</h3>
     <input type="file" accept="image/*" id="upload2" />
-    <button onclick="downloadImage(2)">⬇️ Download PNG</button>
-    <button onclick="refreshPreview(2)">🔄 Refresh</button>
+    <button onclick="downloadImage(2)">Download PNG</button>
+    <button onclick="refreshPreview(2)">Refresh</button>
 
     <div style="margin-top: 10px;">
       <label>
@@ -95,7 +101,9 @@
   <canvas id="tempCanvas" style="display: none;"></canvas>
   <canvas id="exportCanvas1" style="display: none;"></canvas>
   <canvas id="exportCanvas2" style="display: none;"></canvas>
+</div>
 
-  <script src="main.js"></script>
+
+<script src="main.js"></script>
 </body>
 </html>

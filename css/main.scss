@@ -1,0 +1,96 @@
+// @import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
+
+body {
+    font-family: sans-serif;
+    padding: 2rem;
+    background: #fafafa;
+    margin: 0;
+    padding: 0;
+  }
+  .preview-wrapper {
+    position: relative;
+    background-color: #ddd;
+    background-image:
+      linear-gradient(45deg, #ccc 25%, transparent 25%),
+      linear-gradient(-45deg, #ccc 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #ccc 75%),
+      linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  .preview-wrapper canvas {
+    position: absolute; 
+    top: 0;
+    right: 0;
+  }
+  .resizer-block {
+    margin-bottom: 50px;
+  }
+  
+  .navbar{
+    color: white;
+    background-color: #336796;
+    padding: 10px;
+
+    h2 {
+        padding-left: 10px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+    span {
+        margin-right: 10px;
+        font-size: 30px;
+    }
+
+  }
+  .container{
+    padding: 20px;
+  }
+
+//   .resizer-block{
+//     // background-color: rgb(244, 242, 242);
+//     background-color: #cbddec;
+//     border-radius: 20px;
+//     padding: 10px;
+//   }
+
+//   button {
+//     background-color: #4482b3;
+//     color: #fafafa;
+//     border: none;
+//     padding: .6em 1em;
+//     // font-size: 1.4em;
+//     border-radius: .6em;
+//     font-weight: 500;
+//     display: inline-block;
+//     cursor: pointer;
+//   }
+
+//   label{
+//     color: #182839;
+//   }
+
+//   #customWidth1,#customHeight1,#padding1,#customWidth2,#customHeight2,#padding2,#borderSize1,#borderRadius1,#borderSize2,#borderRadius2{
+
+//     font-size: 14px;
+//     border-radius: 6px;
+//     line-height: 1.5;
+//     padding: 5px 10px;
+//     transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+//     border: 2px solid #dee1e2;
+//     color: rgb(78, 77, 77);
+//     background: #dee1e2;
+//     display: inline-block;
+//     height: 16px;
+//     :hover {
+//         border-color: #ccc;
+//     }
+//     :focus{
+//         border-color: #9147ff;
+//         background: #fff;
+//     }
+    
+//   }

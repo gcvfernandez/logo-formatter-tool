@@ -3,107 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🥵FigNot!</title>
+  <title>Payments Logo Formatter</title>
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Symbols:opsz,wght,FILL,GRAD,ROND@24,400,0,0,50&icon_names=file_png" />
 </head>
 <body>
 
   <div class="navbar">
-    <h2><span class="google-symbols">file_png</span> Payments Logo Resizer Tool</h2>
-
+    <h2><span class="google-symbols">file_png</span> Payments Logo Formatter</h2>
   </div>
 
   <!-- Resizer 1 -->
   <div class="container">
-  <div class="resizer-block">
-    <h3>Square (Default: 320x320)</h3>
-    <input type="file" accept="image/*" id="upload1" />
-    <button onclick="downloadImage(1)">Download PNG</button>
-    <button onclick="refreshPreview(1)">Refresh</button>
+    <div class="resizer-block">
+      <h3>Square Logo<span>Default Size: (320x320)</span></h3>
+      <input type="file" accept="image/*" id="upload1" />
+      <button onclick="downloadImage(1)">Download PNG</button>
+      <button onclick="refreshPreview(1)">Update</button>
 
-    <div style="margin-top: 10px;">
-      <label>
-        Width:
-        <input type="number" id="customWidth1" value="320" style="width: 80px;" />
-      </label>
-      <label style="margin-left: 10px;">
-        Height:
-        <input type="number" id="customHeight1" value="320" style="width: 80px;" />
-      </label>
-      <label style="margin-left: 10px;">
-        Padding: <input type="number" id="padding1" value="0" style="width: 60px;">
-      </label>
-    </div>
-    <div style="margin-top: 10px;">
-      <label>
-        <input type="checkbox" id="borderToggle1" onchange="toggleBorderOptions(1)" />
-        Add Border
-      </label>
-      <div id="borderOptions1" style="margin-left: 10px; margin-top: 5px; display: none;">
-        <label>Border Size: <input type="number" id="borderSize1" value="10" style="width: 60px;"></label>
-        <label style="margin-left: 10px;">Radius: <input type="number" id="borderRadius1" value="36" style="width: 60px;"></label>
-        <label style="margin-left: 10px;">Color: <input type="color" id="borderColor1" value="#DADCE0"></label>
+      <div style="margin-top: 10px;">
+        <label>
+          Width:
+          <input type="number" id="customWidth1" value="320" style="width: 80px;" />
+        </label>
+        <label style="margin-left: 10px;">
+          Height:
+          <input type="number" id="customHeight1" value="320" style="width: 80px;" />
+        </label>
+        <label style="margin-left: 10px;">
+          Padding:
+          <input type="number" id="padding1" value="0" style="width: 60px;">
+        </label>
       </div>
-    </div>     
-    <div>
-      <p><strong>Preview:</strong></p>
-      <div class="preview-wrapper" id="previewWrapper1">
-        <canvas id="preview1" width="320" height="320"></canvas>
+
+      <div style="margin-top: 10px;">
+        <label>
+          <input type="checkbox" id="borderToggle1" onchange="toggleBorderOptions(1)" />
+          Add Border
+        </label>
+        <div id="borderOptions1" style="margin-left: 10px; margin-top: 5px; display: none;">
+          <label>
+            Border Size:
+            <input type="number" id="borderSize1" value="10" style="width: 60px;">
+          </label>
+          <label style="margin-left: 10px;">
+            Radius:
+            <input type="number" id="borderRadius1" value="36" style="width: 60px;">
+          </label>
+          <label style="margin-left: 10px;">
+            Color:
+            <input type="color" id="borderColor1" value="#DADCE0">
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <p><strong>Preview:</strong></p>
+        <div class="preview-wrapper" id="previewWrapper1">
+          <canvas id="preview1" width="320" height="320"></canvas>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Resizer 2 -->
-  <div class="resizer-block">
-    <h3>Rectangle (Default: 1170x730)</h3>
-    <input type="file" accept="image/*" id="upload2" />
-    <button onclick="downloadImage(2)">Download PNG</button>
-    <button onclick="refreshPreview(2)">Refresh</button>
+    <!-- Resizer 2 -->
+    <div class="resizer-block">
+      <h3>Rectangle Logo<span>Default Size: (1170x730)</span></h3>
+      <input type="file" accept="image/*" id="upload2" />
+      <button onclick="downloadImage(2)">Download PNG</button>
+      <button onclick="refreshPreview(2)">Update</button>
 
-    <div style="margin-top: 10px;">
-      <label>
-        Width:
-        <input type="number" id="customWidth2" value="1170" style="width: 80px;" />
-      </label>
-      <label style="margin-left: 10px;">
-        Height:
-        <input type="number" id="customHeight2" value="730" style="width: 80px;" />
-      </label>
-      <label style="margin-left: 10px;">
-        Padding:
-        <input type="number" id="padding2" value="100" style="width: 80px;" />
-      </label>
+      <div style="margin-top: 10px;">
+        <label>
+          Width:
+          <input type="number" id="customWidth2" value="1170" style="width: 80px;" />
+        </label>
+        <label style="margin-left: 10px;">
+          Height:
+          <input type="number" id="customHeight2" value="730" style="width: 80px;" />
+        </label>
+        <label style="margin-left: 10px;">
+          Padding:
+          <input type="number" id="padding2" value="100" style="width: 80px;" />
+        </label>
+      </div>
+
       <div style="margin-top: 10px;">
         <label>
           <input type="checkbox" id="borderToggle2" onchange="toggleBorderOptions(2)" checked />
           Add Border
         </label>
         <div id="borderOptions2" style="margin-left: 10px; margin-top: 5px;">
-          <label>Border Size: <input type="number" id="borderSize2" value="10" style="width: 60px;"></label>
-          <label style="margin-left: 10px;">Radius: <input type="number" id="borderRadius2" value="36" style="width: 60px;"></label>
-          <label style="margin-left: 10px;">Color: <input type="color" id="borderColor2" value="#DADCE0"></label>
+          <label>
+            Border Size:
+            <input type="number" id="borderSize2" value="10" style="width: 60px;">
+          </label>
+          <label style="margin-left: 10px;">
+            Radius:
+            <input type="number" id="borderRadius2" value="36" style="width: 60px;">
+          </label>
+          <label style="margin-left: 10px;">
+            Color:
+            <input type="color" id="borderColor2" value="#DADCE0">
+          </label>
         </div>
-      </div>      
-      
-      
-    </div>    
+      </div>
 
-    <div>
-      <p><strong>Preview:</strong></p>
-      <div class="preview-wrapper" id="previewWrapper2">
-        <canvas id="preview2" width="1170" height="730"></canvas>
+      <div>
+        <p><strong>Preview:</strong></p>
+        <div class="preview-wrapper" id="previewWrapper2">
+          <canvas id="preview2" width="1170" height="730"></canvas>
+        </div>
       </div>
     </div>
+
+    <!-- Shared canvases (off-screen) -->
+    <canvas id="tempCanvas" style="display: none;"></canvas>
+    <canvas id="exportCanvas1" style="display: none;"></canvas>
+    <canvas id="exportCanvas2" style="display: none;"></canvas>
   </div>
 
-  <!-- Shared canvases (off-screen) -->
-  <canvas id="tempCanvas" style="display: none;"></canvas>
-  <canvas id="exportCanvas1" style="display: none;"></canvas>
-  <canvas id="exportCanvas2" style="display: none;"></canvas>
-</div>
-
-
-<script src="main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

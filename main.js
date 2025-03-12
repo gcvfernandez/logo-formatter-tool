@@ -24,7 +24,7 @@ function refreshPreview(id) {
   } else if (id === 2 && currentImg2) {
     processImage(currentImg2, 2);
   } else {
-    alert("Ooof upload an image first.");
+    alert("Meow!");
   }
 }
 

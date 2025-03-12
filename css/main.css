@@ -1,7 +1,6 @@
 body {
   font-family: sans-serif;
-  padding: 2rem;
-  background: #fafafa;
+  background-color: #e8e8e8;
   margin: 0;
   padding: 0;
 }
@@ -22,13 +21,9 @@ body {
   right: 0;
 }
 
-.resizer-block {
-  margin-bottom: 50px;
-}
-
 .navbar {
   color: white;
-  background-color: #336796;
+  background-color: rgb(59, 130, 246);
   padding: 10px;
 }
 .navbar h2 {
@@ -42,6 +37,67 @@ body {
   font-size: 30px;
 }
 
+h3 {
+  font-size: 25px;
+  margin-top: 5px;
+}
+h3 span {
+  margin: 5px 0px 30px 0px;
+  font-size: small;
+  display: block;
+  color: rgb(107, 114, 128);
+}
+
 .container {
+  margin-top: 30px;
   padding: 20px;
+}
+
+.resizer-block {
+  margin-bottom: 50px;
+  border-width: 1px;
+  border-color: rgb(219, 234, 254);
+  border-radius: 1rem;
+  background-color: rgb(255, 255, 255);
+  padding: 16px 16px 16px 32px;
+}
+
+button {
+  margin-bottom: 20px;
+  background-color: rgb(59, 130, 246);
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 0.6em 1em;
+  border-radius: 0.6em;
+  font-weight: 500;
+  display: inline-block;
+  cursor: pointer;
+}
+
+label, p {
+  color: rgb(107, 114, 128);
+  font-size: small;
+}
+
+p {
+  margin-top: 50px;
+}
+
+#customWidth1, #customHeight1, #padding1, #customWidth2, #customHeight2, #padding2, #borderSize1, #borderRadius1, #borderSize2, #borderRadius2 {
+  font-size: 12px;
+  border-radius: 6px;
+  line-height: 1.5;
+  padding: 5px 10px;
+  border: 2px solid #dee1e2;
+  color: rgb(78, 77, 77);
+  background: #dee1e2;
+  display: inline-block;
+  height: 16px;
+}
+#customWidth1 :hover, #customHeight1 :hover, #padding1 :hover, #customWidth2 :hover, #customHeight2 :hover, #padding2 :hover, #borderSize1 :hover, #borderRadius1 :hover, #borderSize2 :hover, #borderRadius2 :hover {
+  border-color: #ccc;
+}
+#customWidth1 :focus, #customHeight1 :focus, #padding1 :focus, #customWidth2 :focus, #customHeight2 :focus, #padding2 :focus, #borderSize1 :focus, #borderRadius1 :focus, #borderSize2 :focus, #borderRadius2 :focus {
+  border-color: rgb(59, 130, 246);
+  background: #fff;
 }/*# sourceMappingURL=main.css.map */

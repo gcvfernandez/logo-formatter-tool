@@ -68,7 +68,7 @@
     <!-- Resizer 2 -->
     <div class="resizer-block">
       <h3>Rectangle Logo<span>Default Size: (1170x730)</span></h3>
-      <input type="file" accept="image/*" id="upload2" />
+      <input type="file" accept="image/*" id="upload2"/>
       <button onclick="downloadImage(2)">Download PNG</button>
       <button onclick="refreshPreview(2)">Update</button>
 
@@ -123,5 +123,18 @@
   </div>
 
   <script src="main.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const img = new Image();
+      img.onload = () => {
+        // Store it in your variable and process as usual (e.g. for resizer 1)
+        currentImg1 = img;
+        currentImg2 = img;
+        processImage(img, 1);
+        processImage(img, 2);
+      };
+      img.src = "images/logo.svg";
+    });
+  </script>
 </body>
 </html>

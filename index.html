@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Payments Logo Formatter</title>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=content_cut" />
+  <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
 
-  <div class="navbar">
-    <h2><span class="material-symbols-outlined">content_cut</span> Payments Logo Formatter</h2>
-  </div>
+  <header class="navbar">
+    <div class="navbar-container">
+      <h2><img id="navbar-logo" src="images/scissors.png"> Payments Logo Formatter</h2>
+      <div class="navbar-controls">
+        <img id="png-cta" src="images/png.png">
+        <img id="questions-cta" src="images/information.png">
+      </div>
+    </div>
+  </header>
 
-  <!-- Resizer 1 -->
-  <div class="container">
-    <div class="resizer-block">
+  <main class="container">
+    <!-- Resizer 1 -->
+    <section class="resizer-block">
       <h3>Square Logo<span>Default Size: (320x320)</span></h3>
       <input type="file" accept="image/*" id="upload1" />
       <button onclick="downloadImage(1)">Download PNG</button>
@@ -57,18 +62,16 @@
         </div>
       </div>
 
-      <div>
-        <p><strong>Preview:</strong></p>
-        <div class="preview-wrapper" id="previewWrapper1">
-          <canvas id="preview1" width="320" height="320"></canvas>
-        </div>
+      <p><strong>Preview:</strong></p>
+      <div class="preview-wrapper" id="previewWrapper1">
+        <canvas id="preview1" width="320" height="320"></canvas>
       </div>
-    </div>
+    </section>
 
     <!-- Resizer 2 -->
-    <div class="resizer-block">
+    <section class="resizer-block">
       <h3>Rectangle Logo<span>Default Size: (1170x730)</span></h3>
-      <input type="file" accept="image/*" id="upload2"/>
+      <input type="file" accept="image/*" id="upload2" />
       <button onclick="downloadImage(2)">Download PNG</button>
       <button onclick="refreshPreview(2)">Update</button>
 
@@ -108,33 +111,18 @@
         </div>
       </div>
 
-      <div>
-        <p><strong>Preview:</strong></p>
-        <div class="preview-wrapper" id="previewWrapper2">
-          <canvas id="preview2" width="1170" height="730"></canvas>
-        </div>
+      <p><strong>Preview:</strong></p>
+      <div class="preview-wrapper" id="previewWrapper2">
+        <canvas id="preview2" width="1170" height="730"></canvas>
       </div>
-    </div>
+    </section>
 
-    <!-- Shared canvases (off-screen) -->
+    <!-- Hidden Canvases -->
     <canvas id="tempCanvas" style="display: none;"></canvas>
     <canvas id="exportCanvas1" style="display: none;"></canvas>
     <canvas id="exportCanvas2" style="display: none;"></canvas>
-  </div>
+  </main>
 
   <script src="main.js"></script>
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      const img = new Image();
-      img.onload = () => {
-        // Store it in your variable and process as usual (e.g. for resizer 1)
-        currentImg1 = img;
-        currentImg2 = img;
-        processImage(img, 1);
-        processImage(img, 2);
-      };
-      img.src = "images/logo.svg";
-    });
-  </script>
 </body>
 </html>

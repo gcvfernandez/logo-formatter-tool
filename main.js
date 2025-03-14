@@ -9,13 +9,77 @@ function handleUpload(e, id) {
   const file = e.target.files[0];
   if (!file) return;
 
-  const img = new Image();
-  img.onload = () => {
-    if (id === 1) currentImg1 = img;
-    if (id === 2) currentImg2 = img;
-    processImage(img, id);
-  };
-  img.src = URL.createObjectURL(file);
+  const isSVG = file.type === "image/svg+xml";
+
+  if (isSVG) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const svgText = reader.result;
+
+      // Create a DOMParser to get viewBox info
+      const parser = new DOMParser();
+      const svgDoc = parser.parseFromString(svgText, "image/svg+xml");
+      const svgEl = svgDoc.querySelector("svg");
+
+      const viewBox = svgEl.getAttribute("viewBox");
+      let svgWidth = parseFloat(svgEl.getAttribute("width")) || 0;
+      let svgHeight = parseFloat(svgEl.getAttribute("height")) || 0;
+
+      // If width/height not set, use viewBox values
+      if ((!svgWidth || !svgHeight) && viewBox) {
+        const parts = viewBox.split(" ");
+        svgWidth = parseFloat(parts[2]);
+        svgHeight = parseFloat(parts[3]);
+      }
+
+      if (!svgWidth || !svgHeight) {
+        alert("Couldn't detect SVG dimensions.");
+        return;
+      }
+
+      // Target size = 4x user-selected final size
+      const targetWidth = (parseInt(document.getElementById(`customWidth${id}`).value) || 320) * 4;
+      const scale = targetWidth / svgWidth;
+      const targetHeight = svgHeight * scale;
+
+      // Create temporary canvas for conversion
+      const canvas = document.createElement("canvas");
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+      const ctx = canvas.getContext("2d");
+
+      const img = new Image();
+      img.onload = () => {
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
+        ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+        const pngImg = new Image();
+        pngImg.onload = () => {
+          if (id === 1) currentImg1 = pngImg;
+          if (id === 2) currentImg2 = pngImg;
+          processImage(pngImg, id);
+        };
+        pngImg.src = canvas.toDataURL("image/png");
+      };
+
+      // Use base64-encoded SVG string
+      const svgBlob = new Blob([svgText], { type: "image/svg+xml" });
+      const url = URL.createObjectURL(svgBlob);
+      img.src = url;
+    };
+
+    reader.readAsText(file);
+  } else {
+    // Regular image (PNG, JPG, etc.)
+    const img = new Image();
+    img.onload = () => {
+      if (id === 1) currentImg1 = img;
+      if (id === 2) currentImg2 = img;
+      processImage(img, id);
+    };
+    img.src = URL.createObjectURL(file);
+  }
 }
 
 function refreshPreview(id) {

@@ -135,10 +135,17 @@ function getBoundingBox(imageData) {
 }
 
 function drawFinalImage(img, crop, id) {
-  const width = parseInt(document.getElementById(`customWidth${id}`).value) || 320;
-  const height = width;
-  const padding = parseInt(document.getElementById(`padding${id}`)?.value) || 0;
+  let width = parseInt(document.getElementById(`customWidth${id}`).value) || 320;
+  let height;
+
+  if (id === 1) {
+    height = width; // Square for Resizer 1
+  } else {
+    height = parseInt(document.getElementById(`customHeight${id}`).value) || 320;
+  }
+
   
+  const padding = parseInt(document.getElementById(`padding${id}`)?.value) || 0;
   let addBorder = false;
   let borderSize = 0;
   let borderRadius = 0;
@@ -231,3 +238,17 @@ function roundRect(ctx, x, y, width, height, radius) {
   ctx.closePath();
 }
 
+window.addEventListener("DOMContentLoaded", () => {
+  preloadImage("images/default_320.svg", 1);
+  preloadImage("images/default_1170.svg", 2); // Load default logo into Resizer 1
+});
+
+function preloadImage(src, id) {
+  const img = new Image();
+  img.onload = () => {
+    if (id === 1) currentImg1 = img;
+    if (id === 2) currentImg2 = img;
+    processImage(img, id);
+  };
+  img.src = src;
+}

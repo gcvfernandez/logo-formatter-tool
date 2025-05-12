@@ -136,7 +136,7 @@ function getBoundingBox(imageData) {
 
 function drawFinalImage(img, crop, id) {
   const width = parseInt(document.getElementById(`customWidth${id}`).value) || 320;
-  const height = parseInt(document.getElementById(`customHeight${id}`).value) || 320;
+  const height = width;
   const padding = parseInt(document.getElementById(`padding${id}`)?.value) || 0;
   
   let addBorder = false;

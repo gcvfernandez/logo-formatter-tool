@@ -1,4 +1,4 @@
-# Logo Resizer Tool
+# Logo Formatter Tool
 
 A web based tool to automatically crop, resize, and prepare logos according to preset brand requirements. Built for internal use, this tool simplifies logo formatting for branding configurations.
 
